@@ -54,6 +54,7 @@ func (c *Client) Stream(cb func(resource models.Resource)) {
 				Name:     tweet.User.Name,
 				Username: tweet.User.ScreenName,
 			},
+			Language:    tweet.Lang,
 			PublishedAt: publishedAt,
 			Source:      "twitter",
 		})

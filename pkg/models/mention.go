@@ -9,6 +9,7 @@ type Mention struct {
 	URL         string    `json:"url"`
 	Text        string    `json:"text"`
 	Author      Author    `json:"author"`
+	Language    string    `json:"language"`
 	PublishedAt time.Time `json:"published_at"`
 	Source      string    `json:"source"`
 }
@@ -18,6 +19,7 @@ func NewMentionFromResource(r Resource) Mention {
 		URL:         r.URL,
 		Text:        r.Text,
 		Author:      r.Author,
+		Language:    r.Language,
 		PublishedAt: r.PublishedAt,
 		Source:      r.Source,
 	}

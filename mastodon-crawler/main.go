@@ -62,12 +62,13 @@ func main() {
 						Name:     update.Status.Account.DisplayName,
 						Username: update.Status.Account.Acct,
 					},
+					Language:    update.Status.Language,
 					PublishedAt: update.Status.CreatedAt,
 					Source:      "mastodon",
 				}
 
-				kafkaClient.Publish(topic, r.ToJSON())
-				logResource(r)
+				go kafkaClient.Publish(topic, r.ToJSON())
+				go logResource(r)
 			}
 
 		}

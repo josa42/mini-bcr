@@ -9,6 +9,7 @@ type Resource struct {
 	URL         string    `json:"url"`
 	Text        string    `json:"text"`
 	Author      Author    `json:"author"`
+	Language    string    `json:"language"`
 	PublishedAt time.Time `json:"published_at"`
 	Source      string    `json:"source"`
 }
