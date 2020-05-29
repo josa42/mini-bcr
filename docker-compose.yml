@@ -1,4 +1,25 @@
 version: '3.7'
 services:
+  kafka:
+    image: spotify/kafka
+    ports:
+      - '9092:9092'
+      - '2181:2181'
+    environment:
+      ADVERTISED_HOST: kafka
+      ADVERTISED_PORT: 9092
+
   twitter-crawler:
     build: twitter-crawler/
+    restart: always
+    environment:
+      KAFKA_HOST: 'kafka:9092'
+      KAFKA_TOPIC: 'mentions_new'
+    env_file: .env
+    # .env file should contain:
+    #   TWITTER_CONSUMER_KEY
+    #   TWITTER_CONSUMER_SECRET
+    #   TOKEN
+    #   TWITTER_TOKEN_SECRET
+    depends_on: [kafka]
+
