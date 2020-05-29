@@ -1,0 +1,22 @@
+name: twitter-crawler
+
+on:
+  push:
+    paths:
+      - 'twitter-crawler/**'
+      - 'pkg/**'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        go: [ '1.14' ]
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-go@v2
+        with: { go-version: "${{ matrix.go }}" }
+      - run: go test ./... -v
+        working-directory: twitter-crawler
