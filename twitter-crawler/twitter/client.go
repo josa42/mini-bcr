@@ -28,7 +28,7 @@ func NewClient(consumerKey, consumerSecret, token, tokenSecret string) *Client {
 	}
 }
 
-func (c *Client) Stream(cb func(resource models.Mention)) {
+func (c *Client) Stream(cb func(resource models.Resource)) {
 
 	stream, err := c.client.Streams.Sample(&twitter.StreamSampleParams{
 		Language: []string{"de", "en"},
@@ -42,7 +42,7 @@ func (c *Client) Stream(cb func(resource models.Mention)) {
 	demux.Tweet = func(tweet *twitter.Tweet) {
 		publishedAt, _ := tweet.CreatedAtTime()
 
-		cb(models.Mention{
+		cb(models.Resource{
 			URL:  fmt.Sprintf("https://twitter.com/%s/status/%d", tweet.User.ScreenName, tweet.ID),
 			Text: tweet.Text,
 			Author: models.Author{

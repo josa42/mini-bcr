@@ -10,7 +10,7 @@ Crawl tweets via stream API and publish them as mentions to kafka.
 - `TWITTER_TOKEN_SECRET`
 
 - `KAFKA_HOST`
-- `KAFKA_TOPIC`
+- `KAFKA_PUBLISH_TOPIC`
 
 ## Run
 

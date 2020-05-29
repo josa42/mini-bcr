@@ -12,7 +12,7 @@ import (
 
 func main() {
 	broker := env("KAFKA_HOST", "localhost:9092")
-	topic := env("KAFKA_HOST", "mentions_new")
+	topic := env("KAFKA_PUBLISH_TOPIC", "resources")
 
 	consumerKey := env("TWITTER_CONSUMER_KEY", "")
 	consumerSecret := env("TWITTER_CONSUMER_SECRET", "")
@@ -27,7 +27,7 @@ func main() {
 	kafkaClient := kafka.NewClient([]string{broker})
 	twitterClient := twitter.NewClient(consumerKey, consumerSecret, token, tokenSecret)
 
-	twitterClient.Stream(func(m models.Mention) {
+	twitterClient.Stream(func(m models.Resource) {
 		go kafkaClient.Send(topic, m)
 		go logMention(m)
 	})
@@ -40,7 +40,7 @@ func env(key, defauleValue string) string {
 	return defauleValue
 }
 
-func logMention(m models.Mention) {
+func logMention(m models.Resource) {
 	b, _ := json.Marshal(m)
 	log.Println(string(b))
 }

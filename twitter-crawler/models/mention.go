@@ -10,7 +10,7 @@ type Author struct {
 	Username string
 }
 
-type Mention struct {
+type Resource struct {
 	URL         string    `json:"url"`
 	Text        string    `json:"text"`
 	Author      Author    `json:"author"`
@@ -18,7 +18,7 @@ type Mention struct {
 	Source      string    `json:"source"`
 }
 
-func (r Mention) Encode() string {
+func (r Resource) Encode() string {
 	str, _ := json.Marshal(r)
 	return string(str)
 }

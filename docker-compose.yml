@@ -14,7 +14,7 @@ services:
     restart: always
     environment:
       KAFKA_HOST: 'kafka:9092'
-      KAFKA_TOPIC: 'mentions_new'
+      KAFKA_PUBLISH_TOPIC: 'resources'
     env_file: .env
     # .env file should contain:
     #   TWITTER_CONSUMER_KEY
