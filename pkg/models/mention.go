@@ -5,11 +5,6 @@ import (
 	"time"
 )
 
-type Author struct {
-	Name     string
-	Username string
-}
-
 type Mention struct {
 	URL         string    `json:"url"`
 	Text        string    `json:"text"`

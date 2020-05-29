@@ -10,7 +10,9 @@ services:
       ADVERTISED_PORT: 9092
 
   twitter-crawler:
-    build: twitter-crawler/
+    build:
+      context: .
+      dockerfile: twitter-crawler/Dockerfile
     restart: always
     environment:
       KAFKA_HOST: 'kafka:9092'
@@ -24,7 +26,9 @@ services:
     depends_on: [kafka]
 
   mentions-matcher:
-    build: mentions-matcher/
+    build:
+      context: .
+      dockerfile: mentions-matcher/Dockerfile
     restart: always
     environment:
       KAFKA_HOST: 'kafka:9092'

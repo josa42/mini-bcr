@@ -9,7 +9,7 @@ import (
 
 	"github.com/dghubble/go-twitter/twitter"
 	"github.com/dghubble/oauth1"
-	"github.com/josa42/mini-bcr/twitter-crawler/models"
+	"github.com/josa42/mini-bcr/pkg/models"
 )
 
 type Client struct {

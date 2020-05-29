@@ -5,8 +5,8 @@ import (
 	"log"
 	"os"
 
-	"github.com/josa42/mini-bcr/twitter-crawler/kafka"
-	"github.com/josa42/mini-bcr/twitter-crawler/models"
+	"github.com/josa42/mini-bcr/pkg/kafka"
+	"github.com/josa42/mini-bcr/pkg/models"
 	"github.com/josa42/mini-bcr/twitter-crawler/twitter"
 )
 
@@ -28,7 +28,7 @@ func main() {
 	twitterClient := twitter.NewClient(consumerKey, consumerSecret, token, tokenSecret)
 
 	twitterClient.Stream(func(m models.Resource) {
-		go kafkaClient.Send(topic, m)
+		go kafkaClient.Publish(topic, m.ToJSON())
 		go logMention(m)
 	})
 }

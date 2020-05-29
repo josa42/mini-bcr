@@ -5,8 +5,8 @@ import (
 	"log"
 	"os"
 
-	"github.com/josa42/mini-bcr/mentions-matcher/kafka"
-	"github.com/josa42/mini-bcr/mentions-matcher/models"
+	"github.com/josa42/mini-bcr/pkg/kafka"
+	"github.com/josa42/mini-bcr/pkg/models"
 )
 
 var (

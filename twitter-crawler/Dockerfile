@@ -1,7 +1,8 @@
 FROM golang:1.14
 
-WORKDIR /srv
-COPY . .
+COPY . /src/.
+
+WORKDIR /src/twitter-crawler
 
 RUN go get -d -v ./...
 RUN go install -v ./...
