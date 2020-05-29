@@ -23,3 +23,12 @@ services:
     #   TWITTER_TOKEN_SECRET
     depends_on: [kafka]
 
+  mentions-matcher:
+    build: mentions-matcher/
+    restart: always
+    environment:
+      KAFKA_HOST: 'kafka:9092'
+      KAFKA_SUBSCRIBE_TOPIC: 'resources'
+      KAFKA_PUBLISH_TOPIC: 'mentions'
+    depends_on: [kafka]
+
