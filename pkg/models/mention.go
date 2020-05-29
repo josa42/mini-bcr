@@ -23,8 +23,13 @@ func NewMentionFromResource(r Resource) Mention {
 	}
 }
 
-func (m *Mention) ToJSON() string {
+func NewMentionFromJSON(j string) Mention {
+	m := Mention{}
+	json.Unmarshal([]byte(j), &m)
+	return m
+}
+
+func (m Mention) ToJSON() string {
 	b, _ := json.Marshal(m)
 	return string(b)
 }
-

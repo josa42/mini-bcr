@@ -13,7 +13,7 @@ type Resource struct {
 	Source      string    `json:"source"`
 }
 
-func (r *Resource) ToJSON() string {
+func (r Resource) ToJSON() string {
 	b, _ := json.Marshal(r)
 	return string(b)
 }

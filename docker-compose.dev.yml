@@ -8,3 +8,23 @@ services:
     environment:
       ADVERTISED_HOST: localhost
       ADVERTISED_PORT: 9092
+
+  elasticsearch:
+    image: elasticsearch:7.7.0
+    ports:
+      - '9200:9200'
+      - '9300:9300'
+    environment:
+      discovery.type: single-node
+      http.cors.allow-origin: '*'
+      http.cors.enabled: 'true'
+      http.cors.allow-headers: X-Requested-With,X-Auth-Token,Content-Type,Content-Length,Authorization
+      http.cors.allow-credentials: 'true'
+
+
+  # http://localhost:1358/?appname=mentions&url=http%3A%2F%2Flocalhost%3A9200
+  dejavu:
+    image: appbaseio/dejavu
+    ports:
+      - '1358:1358'
+

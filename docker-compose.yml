@@ -2,12 +2,21 @@ version: '3.7'
 services:
   kafka:
     image: spotify/kafka
-    ports:
-      - '9092:9092'
-      - '2181:2181'
+    restart: always
     environment:
       ADVERTISED_HOST: kafka
       ADVERTISED_PORT: 9092
+    # ports:
+    #   - '9092:9092'
+    #   - '2181:2181'
+
+  elasticsearch:
+    image: elasticsearch:7.7.0
+    restart: always
+    environment:
+      discovery.type: single-node
+    # ports:
+    #   - '9200:9200'
 
   twitter-crawler:
     build:
@@ -35,4 +44,15 @@ services:
       KAFKA_SUBSCRIBE_TOPIC: 'resources'
       KAFKA_PUBLISH_TOPIC: 'mentions'
     depends_on: [kafka]
+
+  mentions-storage:
+    build:
+      context: .
+      dockerfile: mentions-storage/Dockerfile
+    restart: always
+    environment:
+      ELASTICSEARCH_HOST: 'elasticsearch:9200'
+      KAFKA_HOST: 'kafka:9092'
+      KAFKA_SUBSCRIBE_TOPIC: 'mentions'
+    depends_on: [kafka, elasticsearch]
 

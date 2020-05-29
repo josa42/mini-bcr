@@ -1,0 +1,22 @@
+name: mentions-storage
+
+on:
+  push:
+    paths:
+      - 'mentions-storage/**'
+      - 'pkg/**'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        go: [ '1.14' ]
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-go@v2
+        with: { go-version: "${{ matrix.go }}" }
+      - run: go test ./... -v
+        working-directory: mentions-storage
