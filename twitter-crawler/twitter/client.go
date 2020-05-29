@@ -42,9 +42,14 @@ func (c *Client) Stream(cb func(resource models.Resource)) {
 	demux.Tweet = func(tweet *twitter.Tweet) {
 		publishedAt, _ := tweet.CreatedAtTime()
 
+		text := tweet.Text
+		if t := tweet.ExtendedTweet; t != nil {
+			text = t.FullText
+		}
+
 		cb(models.Resource{
 			URL:  fmt.Sprintf("https://twitter.com/%s/status/%d", tweet.User.ScreenName, tweet.ID),
-			Text: tweet.Text,
+			Text: text,
 			Author: models.Author{
 				Name:     tweet.User.Name,
 				Username: tweet.User.ScreenName,
