@@ -1,5 +1,13 @@
 # Mini BCR
 
+![pkg](https://github.com/josa42/mini-bcr/workflows/pkg/badge.svg)
+![twitter-crawler](https://github.com/josa42/mini-bcr/workflows/twitter-crawler/badge.svg)
+![mastodon-crawler](https://github.com/josa42/mini-bcr/workflows/mastodon-crawler/badge.svg)
+![mentions-matcher](https://github.com/josa42/mini-bcr/workflows/mentions-matcher/badge.svg)
+![mentions-storage](https://github.com/josa42/mini-bcr/workflows/mentions-storage/badge.svg)
+
+---
+
 ## Services
 
 - `twitter-crawler` ([README.md](twitter-crawler/README.md))
