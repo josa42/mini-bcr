@@ -1,0 +1,11 @@
+graph TD;
+    Resources{{Topic: resources}}
+    Mentions{{Topic: mentions}}
+    Storage[(Elastic Search)]
+
+    CrawlerAService --> |publish  | Resources
+    CrawlerBService --> |publish  | Resources
+    Resources       --> |subscribe| MatcherService
+    MatcherService  --> |publish  | Mentions
+    Mentions        --> |subscribe| StorageService
+    StorageService  --> Storage
