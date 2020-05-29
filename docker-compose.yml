@@ -30,9 +30,25 @@ services:
     # .env file should contain:
     #   TWITTER_CONSUMER_KEY
     #   TWITTER_CONSUMER_SECRET
-    #   TOKEN
+    #   TWITTER_TOKEN
     #   TWITTER_TOKEN_SECRET
     depends_on: [kafka]
+
+  mastodon-crawler:
+    build:
+      context: .
+      dockerfile: mastodon-crawler/Dockerfile
+    restart: always
+    environment:
+      KAFKA_HOST: 'kafka:9092'
+      KAFKA_PUBLISH_TOPIC: 'resources'
+      MASTODON_SERVER: 'https://mas.to'
+    env_file: .env
+    # .env file should contain:
+    #   MASTODON_CLIENT_ID
+    #   MASTODON_CLIENT_SECRET
+    #   MASTODON_USERNAME
+    #   MASTODON_PASSWORD
 
   mentions-matcher:
     build:
